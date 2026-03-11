@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casa-Museo Maravillas</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" { box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
 
   body {
     margin: 0;
@@ -51,7 +54,7 @@
     width: 400px;
     display: flex;
     flex-direction: column;
-    /* position: relative;  <-- QUITADO */
+    position: relative; /* para que la barra inferior absolute sea relativa al sidebar */
     background-color: #061D39;
   }
 
@@ -61,14 +64,15 @@
     line-height: 1.6;
     color: #EBEBEB;
     overflow-y: auto;
-    /* height: 100%;           <-- QUITADO */
-    /* padding-bottom: 180px;  <-- QUITADO */
-    flex: 1; /* <-- Hace que ocupe el alto restante y empuja la barra abajo */
+    height: 100%; /* ocupa todo el sidebar, la barra inferior está encima */
+    padding-bottom: 180px; /* espacio para la barra inferior */
   }
 
-  /* Barra inferior al final del flujo (sin absolute) */
+  /* Barra inferior fija abajo */
   .bottom-bar {
-    /* position: absolute; bottom: 0; left: 0;  <-- QUITADO */
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
     background-color: #EBEBEB;
     padding: 15px 20px;
@@ -197,26 +201,6 @@
 
     if(code === "5") {
       objectInfo.innerHTML = `
-        <span><strong>Nombre:</strong> Ana</span>
-        <span><strong>Material:</strong> Chicle</span>
-        <span><strong>Dimensiones:</strong> 6 metros</span>
-        <span><strong>Fecha:</strong> 2000</span>
-        <span><strong>Autor:</strong> Narnia</span>
-      `;
-    } else {
-      objectInfo.innerHTML = `
-        <span><strong>Nombre:</strong></span>
-        <span><strong>Material:</strong></span>
-        <span><strong>Dimensiones:</strong></span>
-        <span><strong>Fecha:</strong></span>
-        <span><strong>Autor:</strong></span>
-      `;
-    }
-  });
-</script>
-
-</body>
-</html>
         <span><strong>Nombre:</strong> Ana</span>
         <span><strong>Material:</strong> Chicle</span>
         <span><strong>Dimensiones:</strong> 6 metros</span>
