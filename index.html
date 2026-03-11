@@ -4,207 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casa-Museo Maravillas</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-body{
-font-family:'Roboto',sans-serif;
-background:#061D39;
-color:#EBEBEB;
-height:100vh;
-display:flex;
-flex-direction:column;
-overflow:hidden;
-}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Roboto',sans-serif; background:#061D39; color:#EBEBEB; height:100vh; display:flex; flex-direction:column; overflow:hidden; }
 
 /* CABECERA */
-
-.top-bar{
-height:60px;
-background:#EBEBEB;
-color:#061D39;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:'Playfair Display',serif;
-font-size:28px;
-font-weight:700;
-position:relative;
+.top-bar {
+  height:60px; background:#EBEBEB; color:#061D39; display:flex;
+  justify-content:center; align-items:center; font-family:'Playfair Display',serif; font-size:28px; font-weight:700; position:relative;
 }
-
-/* MENU HAMBURGUESA */
-
-.menu-button{
-position:absolute;
-right:25px;
-top:18px;
-cursor:pointer;
-display:flex;
-flex-direction:column;
-gap:5px;
+.menu-button { position:absolute; right:25px; top:18px; cursor:pointer; display:flex; flex-direction:column; gap:5px; }
+.menu-line { width:22px; height:2px; background:#061D39; }
+.menu-panel {
+  position:absolute; top:60px; right:20px; background:#EBEBEB; color:#061D39;
+  border-radius:6px; box-shadow:0 5px 15px rgba(0,0,0,0.2); padding:12px;
+  display:none; flex-direction:column; gap:10px; font-size:14px; min-width:190px;
 }
+.menu-panel div { cursor:pointer; padding:5px 8px; border-radius:4px; transition:background 0.2s; }
+.menu-panel div:hover { background:#A2A2A2; color:#fff; }
 
-.menu-line{
-width:22px;
-height:2px;
-background:#061D39;
-}
-
-/* DESPLEGABLE */
-
-.menu-panel{
-position:absolute;
-top:60px;
-right:20px;
-background:#EBEBEB;
-color:#061D39;
-border-radius:6px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-padding:12px;
-display:none;
-flex-direction:column;
-gap:10px;
-font-size:14px;
-min-width:190px;
-}
-
-.menu-panel div{
-cursor:pointer;
-padding:5px 8px;
-border-radius:4px;
-transition:background 0.2s;
-}
-
-.menu-panel div:hover{
-background:#A2A2A2;
-color:#fff;
-}
-
-/* ZONA SALA */
-
-.main{
-flex:1;
-background:#061D39;
-display:flex;
-min-height:0;
-}
-
-#threeCanvas{
-width:100%;
-height:100%;
-display:block;
-}
+/* SALA */
+.main { flex:1; background:#061D39; display:flex; min-height:0; }
+#threeCanvas { flex:1; width:100%; height:100%; display:block; }
 
 /* BARRA INFERIOR */
-
-.bottom-bar{
-background:#EBEBEB;
-padding:18px 30px;
-display:flex;
-flex-direction:column;
-gap:12px;
+.bottom-bar { background:#EBEBEB; padding:18px 30px; display:flex; flex-direction:column; gap:12px; }
+.bottom-bar h2 { color:#061D39; font-size:20px; }
+.bottom-content { display:flex; align-items:center; gap:40px; }
+.search-block { display:flex; gap:10px; }
+.code-input {
+  font-family:'Fira Code',monospace; padding:10px; border:1px solid #A2A2A2;
+  border-radius:8px; background:#EBEBEB; color:#061D39; transition:all 0.2s;
 }
-
-.bottom-bar h2{
-color:#061D39;
-font-size:20px;
-}
-
-/* CONTENIDO */
-
-.bottom-content{
-display:flex;
-align-items:center;
-gap:40px;
-}
-
-/* BUSCADOR */
-
-.search-block{
-display:flex;
-gap:10px;
-}
-
-.code-input{
-font-family:'Fira Code',monospace;
-padding:10px;
-border:1px solid #A2A2A2;
-border-radius:8px;
-background:#EBEBEB;
-color:#061D39;
-transition:all 0.2s;
-}
-
-.code-input:focus{
-border-color:#8F95A5;
-box-shadow:0 0 6px #8F95A5;
-}
-
-.button{
-padding:10px 16px;
-background:#8F95A5;
-color:#EBEBEB;
-border:none;
-border-radius:8px;
-cursor:pointer;
-transition:all 0.2s;
-}
-
-.button:hover{
-background:#061D39;
-}
+.code-input:focus { border-color:#8F95A5; box-shadow:0 0 6px #8F95A5; }
+.button { padding:10px 16px; background:#8F95A5; color:#EBEBEB; border:none; border-radius:8px; cursor:pointer; transition:all 0.2s; }
+.button:hover { background:#061D39; }
 
 /* VISOR */
-
-.object-viewer{
-width:170px;
-height:120px;
-border:1px solid #A2A2A2;
-border-radius:6px;
-background:#061D39;
-position:relative;
-}
-
-#objectCanvas{
-width:100%;
-height:100%;
-}
-
-.viewer-placeholder{
-position:absolute;
-bottom:5px;
-left:8px;
-font-size:11px;
-opacity:0.6;
+.object-viewer {
+  width:170px; height:120px; border:1px solid #A2A2A2; border-radius:6px;
+  background:#061D39; display:flex; align-items:center; justify-content:center; font-size:11px; opacity:0.6;
 }
 
 /* DATOS */
-
-.object-data{
-display:flex;
-gap:25px;
-color:#061D39;
-font-size:14px;
-}
+.object-data { display:flex; gap:25px; color:#061D39; font-size:14px; }
 
 /* FOOTER */
-
-.footer{
-height:22px;
-background:#061D39;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:12px;
-}
+.footer { height:22px; background:#061D39; display:flex; justify-content:center; align-items:center; font-size:12px; }
 
 </style>
 </head>
@@ -212,144 +60,89 @@ font-size:12px;
 <body>
 
 <div class="top-bar">
-
-Casa-Museo Maravillas
-
-<div class="menu-button" id="menuButton">
-<div class="menu-line"></div>
-<div class="menu-line"></div>
-<div class="menu-line"></div>
-</div>
-
-<div class="menu-panel" id="menuPanel">
-<div>Visión de humedad relativa HR %</div>
-<div>Temperatura</div>
-<div>Piezas en riesgo</div>
-<div>Selección por tipología</div>
-</div>
-
+  Casa-Museo Maravillas
+  <div class="menu-button" id="menuButton">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+  </div>
+  <div class="menu-panel" id="menuPanel">
+    <div>Visión de humedad relativa HR %</div>
+    <div>Temperatura</div>
+    <div>Piezas en riesgo</div>
+    <div>Selección por tipología</div>
+  </div>
 </div>
 
 <div class="main">
-<canvas id="threeCanvas"></canvas>
+  <canvas id="threeCanvas"></canvas>
 </div>
 
 <div class="bottom-bar">
-
-<h2>Sala: Salón de Estudio</h2>
-
-<div class="bottom-content">
-
-<div class="search-block">
-<input class="code-input" placeholder="Introduce el código" id="codeInput">
-<button class="button" id="searchButton">Buscar</button>
+  <h2>Sala: Salón de Estudio</h2>
+  <div class="bottom-content">
+    <div class="search-block">
+      <input class="code-input" placeholder="Introduce el código" id="codeInput">
+      <button class="button" id="searchButton">Buscar</button>
+    </div>
+    <div class="object-viewer">Visor 3D</div>
+    <div class="object-data" id="objectInfo"></div>
+  </div>
 </div>
 
-<div class="object-viewer">
-<canvas id="objectCanvas"></canvas>
-<div class="viewer-placeholder">Visor 3D</div>
-</div>
-
-<div class="object-data" id="objectInfo">
-<span><strong>Nombre:</strong></span>
-<span><strong>Tipología:</strong></span>
-<span><strong>Material:</strong></span>
-<span><strong>Dimensiones:</strong></span>
-<span><strong>Fecha:</strong></span>
-<span><strong>Autor:</strong></span>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-© Ana Braojos Martorell
-</div>
+<div class="footer">© Ana Braojos Martorell</div>
 
 <script>
-
-const searchButton=document.getElementById("searchButton");
-const codeInput=document.getElementById("codeInput");
-const objectInfo=document.getElementById("objectInfo");
-
-const menuButton=document.getElementById("menuButton");
-const menuPanel=document.getElementById("menuPanel");
-
-menuButton.addEventListener("click",()=>{
-
-if(menuPanel.style.display==="flex"){
-menuPanel.style.display="none";
-}else{
-menuPanel.style.display="flex";
-}
-
-});
-  const piezas = {
-
-"200345": {nombre:"Ventana 1", tipologia:"Ventana"},
-"200346": {nombre:"Ventana 2", tipologia:"Ventana"},
-
-"100089": {nombre:"Cuadro 1", tipologia:"Pintura"},
-"100090": {nombre:"Cuadro 2", tipologia:"Pintura"},
-"100086": {nombre:"Cuadro 3", tipologia:"Pintura"},
-"100083": {nombre:"Cuadro 4", tipologia:"Pintura"},
-
-"100465": {nombre:"Tapiz 1", tipologia:"Tapiz"},
-"100726": {nombre:"Alfombra 1", tipologia:"Alfombra"},
-
-"100040": {nombre:"Cortina 1", tipologia:"Textil"},
-"100041": {nombre:"Cortina 2", tipologia:"Textil"},
-
-"0034": {nombre:"Radiador 1", tipologia:"Radiador"},
-
-"100263": {nombre:"Escultura 1", tipologia:"Escultura"},
-"100274": {nombre:"Escultura 2", tipologia:"Escultura"},
-
-"101040": {nombre:"Librería 1", tipologia:"Mueble"},
-"101041": {nombre:"Librería 2", tipologia:"Mueble"},
-
-"100050": {nombre:"Silla 1", tipologia:"Mueble"},
-"100053": {nombre:"Silla 2", tipologia:"Mueble"},
-
-"100034": {nombre:"Mesa 1", tipologia:"Mueble"},
-"100092": {nombre:"Sillón 1", tipologia:"Mueble"},
-"100587": {nombre:"Sofá 1", tipologia:"Mueble"}
-
+// Base de piezas
+const piezas = {
+  "200345": {nombre:"Ventana 1", tipologia:"Ventana"},
+  "200346": {nombre:"Ventana 2", tipologia:"Ventana"},
+  "100089": {nombre:"Cuadro 1", tipologia:"Pintura"},
+  "100090": {nombre:"Cuadro 2", tipologia:"Pintura"},
+  "100086": {nombre:"Cuadro 3", tipologia:"Pintura"},
+  "100083": {nombre:"Cuadro 4", tipologia:"Pintura"},
+  "100465": {nombre:"Tapiz 1", tipologia:"Tapiz"},
+  "100726": {nombre:"Alfombra 1", tipologia:"Alfombra"},
+  "100040": {nombre:"Cortina 1", tipologia:"Textil"},
+  "100041": {nombre:"Cortina 2", tipologia:"Textil"},
+  "0034": {nombre:"Radiador 1", tipologia:"Radiador"},
+  "100263": {nombre:"Escultura 1", tipologia:"Escultura"},
+  "100274": {nombre:"Escultura 2", tipologia:"Escultura"},
+  "101040": {nombre:"Librería 1", tipologia:"Mueble"},
+  "101041": {nombre:"Librería 2", tipologia:"Mueble"},
+  "100050": {nombre:"Silla 1", tipologia:"Mueble"},
+  "100053": {nombre:"Silla 2", tipologia:"Mueble"},
+  "100034": {nombre:"Mesa 1", tipologia:"Mueble"},
+  "100092": {nombre:"Sillón 1", tipologia:"Mueble"},
+  "100587": {nombre:"Sofá 1", tipologia:"Mueble"}
 };
 
-searchButton.addEventListener("click",()=>{
+// Toggle menú
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+menuButton.addEventListener("click",()=> menuPanel.classList.toggle("active"));
 
-const code=codeInput.value.trim();
+// Buscar pieza
+const searchButton = document.getElementById("searchButton");
+const codeInput = document.getElementById("codeInput");
+const objectInfo = document.getElementById("objectInfo");
 
-const pieza=piezas[code];
-
-if(pieza){
-
-objectInfo.innerHTML=`
-<span><strong>Nombre:</strong> ${pieza.nombre}</span>
-<span><strong>Tipología:</strong> ${pieza.tipologia}</span>
-<span><strong>Material:</strong></span>
-<span><strong>Dimensiones:</strong></span>
-<span><strong>Fecha:</strong></span>
-<span><strong>Autor:</strong></span>
-`;
-
-}else{
-
-objectInfo.innerHTML=`
-<span><strong>Nombre:</strong></span>
-<span><strong>Tipología:</strong></span>
-<span><strong>Material:</strong></span>
-<span><strong>Dimensiones:</strong></span>
-<span><strong>Fecha:</strong></span>
-<span><strong>Autor:</strong></span>
-`;
-
-}
-
+searchButton.addEventListener("click", () => {
+  const code = codeInput.value.trim();
+  const pieza = piezas[code];
+  if(pieza){
+    objectInfo.innerHTML = `
+      <span><strong>Nombre:</strong> ${pieza.nombre}</span>
+      <span><strong>Tipología:</strong> ${pieza.tipologia}</span>
+      <span><strong>Material:</strong></span>
+      <span><strong>Dimensiones:</strong></span>
+      <span><strong>Fecha:</strong></span>
+      <span><strong>Autor:</strong></span>
+    `;
+  } else {
+    objectInfo.innerHTML = "";
+  }
 });
-
 </script>
 
 </body>
