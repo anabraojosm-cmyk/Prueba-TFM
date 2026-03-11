@@ -4,11 +4,113 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sala Expositiva 3D</title>
+
+<!-- Fuentes elegantes -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+
+<!-- CSS principal -->
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #061D39; /* azul oscuro elegante */
+    color: #EBEBEB;
+  }
+
+  .container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Sidebar lateral */
+  .sidebar {
+    width: 300px;
+    background-color: #EBEBEB; /* panel claro */
+    color: #061D39;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .sidebar h2 {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .code-input {
+    font-family: 'Fira Code', monospace;
+    font-size: 16px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #A2A2A2;
+    border-radius: 8px;
+    outline: none;
+    background-color: #EBEBEB;
+    color: #061D39;
+    width: 100%;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  .code-input:focus {
+    border-color: #8F95A5;
+    box-shadow: 0 0 5px #8F95A5;
+  }
+
+  .button {
+    padding: 12px 20px;
+    background-color: #8F95A5;
+    color: #EBEBEB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .button:hover {
+    background-color: #A2A2A2;
+    transform: translateY(-2px);
+  }
+
+  .object-info {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #061D39;
+    padding-right: 5px;
+  }
+
+  /* Área principal para Three.js */
+  .main {
+    flex: 1;
+    background-color: #061D39;
+    position: relative;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
 </head>
+
 <body>
   <div class="container">
+    <!-- Sidebar -->
     <div class="sidebar">
       <h2>Galería 3D</h2>
       <input class="code-input" placeholder="Introduce código de obra..." />
@@ -17,10 +119,16 @@
         <p>La información de la obra aparecerá aquí...</p>
       </div>
     </div>
+
+    <!-- Área principal 3D -->
     <div class="main">
       <canvas id="threeCanvas"></canvas>
     </div>
   </div>
-  <script src="js/main.js"></script>
+
+  <!-- JS base -->
+  <script>
+    console.log("Interfaz base cargada. Próximo paso: integrar Three.js y modelos GLB");
+  </script>
 </body>
 </html>
