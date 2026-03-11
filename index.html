@@ -23,6 +23,7 @@
     overflow: hidden;
   }
 
+  /* Barra superior */
   .top-bar {
     width: 100%;
     height: 60px;
@@ -37,6 +38,7 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 
+  /* Área principal izquierda */
   .main {
     flex: 1;
     background-color: #061D39;
@@ -49,14 +51,16 @@
     height: 100%;
   }
 
+  /* Sidebar derecha vertical */
   .sidebar {
     width: 400px;
     display: flex;
     flex-direction: column;
   }
 
+  /* Panel de info azul ocupa todo el espacio disponible arriba */
   .info-panel {
-    flex: 1;
+    flex: 1; /* ocupa todo lo que sobra arriba */
     background-color: #061D39;
     color: #EBEBEB;
     padding: 20px;
@@ -65,7 +69,9 @@
     line-height: 1.6;
   }
 
+  /* Barra inferior blanca fija abajo */
   .bottom-bar {
+    flex-shrink: 0; /* nunca se encoge */
     background-color: #EBEBEB;
     padding: 15px 20px;
     display: flex;
@@ -139,6 +145,7 @@
     min-width: 120px;
   }
 
+  /* Footer */
   .footer {
     width: 100%;
     height: 20px;
@@ -161,8 +168,10 @@
     </div>
 
     <div class="sidebar">
+      <!-- Panel azul -->
       <div class="info-panel" id="infoPanel"></div>
 
+      <!-- Barra inferior blanca -->
       <div class="bottom-bar">
         <h2>Sala: Salón de Estudio</h2>
         <div class="bottom-content">
@@ -192,17 +201,15 @@
     searchButton.addEventListener('click', () => {
       const code = codeInput.value.trim();
 
-      // Condición de prueba para código 5
       if(code === "5") {
         objectInfo.innerHTML = `
           <span><strong>Nombre:</strong> Ana</span>
           <span><strong>Material:</strong> Chicle</span>
           <span><strong>Dimensiones:</strong> 6 metros</span>
-          <span><strong>Fecha:</strong> 1989</span>
+          <span><strong>Fecha:</strong> 2000</span>
           <span><strong>Autor:</strong> Narnia</span>
         `;
       } else {
-        // Rellenamos los campos con vacío si no coincide
         objectInfo.innerHTML = `
           <span><strong>Nombre:</strong></span>
           <span><strong>Material:</strong></span>
