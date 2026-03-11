@@ -285,20 +285,54 @@ menuPanel.style.display="flex";
 }
 
 });
+  const piezas = {
+
+"200345": {nombre:"Ventana 1", tipologia:"Ventana"},
+"200346": {nombre:"Ventana 2", tipologia:"Ventana"},
+
+"100089": {nombre:"Cuadro 1", tipologia:"Pintura"},
+"100090": {nombre:"Cuadro 2", tipologia:"Pintura"},
+"100086": {nombre:"Cuadro 3", tipologia:"Pintura"},
+"100083": {nombre:"Cuadro 4", tipologia:"Pintura"},
+
+"100465": {nombre:"Tapiz 1", tipologia:"Tapiz"},
+"100726": {nombre:"Alfombra 1", tipologia:"Alfombra"},
+
+"100040": {nombre:"Cortina 1", tipologia:"Textil"},
+"100041": {nombre:"Cortina 2", tipologia:"Textil"},
+
+"0034": {nombre:"Radiador 1", tipologia:"Radiador"},
+
+"100263": {nombre:"Escultura 1", tipologia:"Escultura"},
+"100274": {nombre:"Escultura 2", tipologia:"Escultura"},
+
+"101040": {nombre:"Librería 1", tipologia:"Mueble"},
+"101041": {nombre:"Librería 2", tipologia:"Mueble"},
+
+"100050": {nombre:"Silla 1", tipologia:"Mueble"},
+"100053": {nombre:"Silla 2", tipologia:"Mueble"},
+
+"100034": {nombre:"Mesa 1", tipologia:"Mueble"},
+"100092": {nombre:"Sillón 1", tipologia:"Mueble"},
+"100587": {nombre:"Sofá 1", tipologia:"Mueble"}
+
+};
 
 searchButton.addEventListener("click",()=>{
 
 const code=codeInput.value.trim();
 
-if(code==="5"){
+const pieza=piezas[code];
+
+if(pieza){
 
 objectInfo.innerHTML=`
-<span><strong>Nombre:</strong> Ana</span>
-<span><strong>Tipología:</strong> Escultura</span>
-<span><strong>Material:</strong> Chicle</span>
-<span><strong>Dimensiones:</strong> 6 metros</span>
-<span><strong>Fecha:</strong> 2000</span>
-<span><strong>Autor:</strong> Narnia</span>
+<span><strong>Nombre:</strong> ${pieza.nombre}</span>
+<span><strong>Tipología:</strong> ${pieza.tipologia}</span>
+<span><strong>Material:</strong></span>
+<span><strong>Dimensiones:</strong></span>
+<span><strong>Fecha:</strong></span>
+<span><strong>Autor:</strong></span>
 `;
 
 }else{
