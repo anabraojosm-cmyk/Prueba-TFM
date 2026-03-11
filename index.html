@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casa-Museo Maravillas</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@oboto:wght@400;700&display=swap
 
 <style>
   * { box-sizing: border-box; }
@@ -50,29 +50,26 @@
     height: 100%;
   }
 
+  /* SIDEBAR */
   .sidebar {
     width: 400px;
+    background-color: #061D39;
     display: flex;
     flex-direction: column;
-    position: relative; /* para que la barra inferior absolute sea relativa al sidebar */
-    background-color: #061D39;
   }
 
+  /* Panel de información arriba */
   .info-panel {
     padding: 20px;
     font-size: 14px;
     line-height: 1.6;
     color: #EBEBEB;
     overflow-y: auto;
-    height: 100%; /* ocupa todo el sidebar, la barra inferior está encima */
-    padding-bottom: 180px; /* espacio para la barra inferior */
+    flex: 1; /* ocupa todo el espacio disponible */
   }
 
-  /* Barra inferior fija abajo */
+  /* Barra inferior fija abajo del sidebar */
   .bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     background-color: #EBEBEB;
     padding: 15px 20px;
@@ -93,7 +90,6 @@
   .bottom-content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 20px;
   }
 
@@ -158,25 +154,32 @@
   }
 </style>
 </head>
+
 <body>
 
 <div class="top-bar">Casa-Museo Maravillas</div>
 
 <div class="container">
+
   <div class="main">
     <canvas id="threeCanvas"></canvas>
   </div>
 
   <div class="sidebar">
+
+    <!-- Panel superior -->
     <div class="info-panel" id="infoPanel"></div>
 
+    <!-- Bloque inferior separado -->
     <div class="bottom-bar">
       <h2>Sala: Salón de Estudio</h2>
+
       <div class="bottom-content">
         <div class="bottom-left">
           <input class="code-input" placeholder="Introduce el código" id="codeInput"/>
           <button class="button" id="searchButton">Buscar</button>
         </div>
+
         <div class="bottom-right" id="objectInfo">
           <span><strong>Nombre:</strong></span>
           <span><strong>Material:</strong></span>
@@ -186,6 +189,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -221,3 +225,4 @@
 
 </body>
 </html>
+``
