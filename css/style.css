@@ -3,6 +3,9 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #061D39; /* azul oscuro elegante */
   color: #EBEBEB; /* texto principal */
+  height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 .container {
