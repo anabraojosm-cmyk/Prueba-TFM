@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sala Expositiva 3D</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Galería 3D</h2>
+      <input class="code-input" placeholder="Introduce código de obra..." />
+      <button class="button">Buscar / Iluminar</button>
+      <div class="object-info">
+        <p>La información de la obra aparecerá aquí...</p>
+      </div>
+    </div>
+    <div class="main">
+      <canvas id="threeCanvas"></canvas>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
