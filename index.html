@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casa-Museo Maravillas</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@oboto:wght@400;700&display=swap
-
-<style>
-  * { box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" { box-sizing: border-box; }
 
   body {
     margin: 0;
@@ -50,26 +47,28 @@
     height: 100%;
   }
 
-  /* SIDEBAR */
   .sidebar {
     width: 400px;
-    background-color: #061D39;
     display: flex;
     flex-direction: column;
+    /* position: relative;  <-- QUITADO */
+    background-color: #061D39;
   }
 
-  /* Panel de información arriba */
   .info-panel {
     padding: 20px;
     font-size: 14px;
     line-height: 1.6;
     color: #EBEBEB;
     overflow-y: auto;
-    flex: 1; /* ocupa todo el espacio disponible */
+    /* height: 100%;           <-- QUITADO */
+    /* padding-bottom: 180px;  <-- QUITADO */
+    flex: 1; /* <-- Hace que ocupe el alto restante y empuja la barra abajo */
   }
 
-  /* Barra inferior fija abajo del sidebar */
+  /* Barra inferior al final del flujo (sin absolute) */
   .bottom-bar {
+    /* position: absolute; bottom: 0; left: 0;  <-- QUITADO */
     width: 100%;
     background-color: #EBEBEB;
     padding: 15px 20px;
@@ -90,6 +89,7 @@
   .bottom-content {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 20px;
   }
 
@@ -154,32 +154,25 @@
   }
 </style>
 </head>
-
 <body>
 
 <div class="top-bar">Casa-Museo Maravillas</div>
 
 <div class="container">
-
   <div class="main">
     <canvas id="threeCanvas"></canvas>
   </div>
 
   <div class="sidebar">
-
-    <!-- Panel superior -->
     <div class="info-panel" id="infoPanel"></div>
 
-    <!-- Bloque inferior separado -->
     <div class="bottom-bar">
       <h2>Sala: Salón de Estudio</h2>
-
       <div class="bottom-content">
         <div class="bottom-left">
           <input class="code-input" placeholder="Introduce el código" id="codeInput"/>
           <button class="button" id="searchButton">Buscar</button>
         </div>
-
         <div class="bottom-right" id="objectInfo">
           <span><strong>Nombre:</strong></span>
           <span><strong>Material:</strong></span>
@@ -189,7 +182,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -208,7 +200,7 @@
         <span><strong>Nombre:</strong> Ana</span>
         <span><strong>Material:</strong> Chicle</span>
         <span><strong>Dimensiones:</strong> 6 metros</span>
-        <span><strong>Fecha:</strong> 1989</span>
+        <span><strong>Fecha:</strong> 2000</span>
         <span><strong>Autor:</strong> Narnia</span>
       `;
     } else {
@@ -225,4 +217,23 @@
 
 </body>
 </html>
-``
+        <span><strong>Nombre:</strong> Ana</span>
+        <span><strong>Material:</strong> Chicle</span>
+        <span><strong>Dimensiones:</strong> 6 metros</span>
+        <span><strong>Fecha:</strong> 2000</span>
+        <span><strong>Autor:</strong> Narnia</span>
+      `;
+    } else {
+      objectInfo.innerHTML = `
+        <span><strong>Nombre:</strong></span>
+        <span><strong>Material:</strong></span>
+        <span><strong>Dimensiones:</strong></span>
+        <span><strong>Fecha:</strong></span>
+        <span><strong>Autor:</strong></span>
+      `;
+    }
+  });
+</script>
+
+</body>
+</html>
