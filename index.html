@@ -5,27 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casa-Museo Maravillas</title>
 
+<!-- Fuentes elegantes -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin:0; padding:0; }
 
   body {
-    margin: 0;
     font-family: 'Roboto', sans-serif;
     background-color: #061D39;
     color: #EBEBEB;
-  }
-
-  .container {
+    height: 100vh;
     display: flex;
-    height: calc(100vh - 60px); /* altura menos barra superior */
-    overflow: hidden;
+    flex-direction: column;
   }
 
   /* Barra superior */
   .top-bar {
-    width: 100%;
     height: 60px;
     background-color: #EBEBEB;
     color: #061D39;
@@ -38,131 +34,132 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 
+  .main-container {
+    display: flex;
+    flex:1;
+    overflow:hidden;
+  }
+
+  /* Canvas principal */
   .main {
-    flex: 1;
+    flex:1;
     background-color: #061D39;
-    position: relative;
   }
 
   canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
+    width:100%;
+    height:100%;
+    display:block;
   }
 
+  /* Sidebar derecha */
   .sidebar {
-    width: 400px;
+    width:400px;
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative; /* para que la barra inferior absolute sea relativa al sidebar */
     background-color: #061D39;
   }
 
   .info-panel {
-    padding: 20px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #EBEBEB;
-    overflow-y: auto;
-    height: 100%; /* ocupa todo el sidebar, la barra inferior está encima */
-    padding-bottom: 180px; /* espacio para la barra inferior */
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
   }
 
-  /* Barra inferior fija abajo */
+  /* Barra inferior pegada abajo */
   .bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #EBEBEB;
-    padding: 15px 20px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background-color:#EBEBEB;
+    padding:15px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
     box-shadow: -2px -2px 10px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
   }
 
   .bottom-bar h2 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-    color: #061D39;
-    white-space: nowrap;
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:700;
+    color:#061D39;
+    white-space:nowrap;
   }
 
   .bottom-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
   }
 
   .bottom-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
 
   .code-input {
     font-family: 'Fira Code', monospace;
-    padding: 10px;
-    border: 1px solid #A2A2A2;
-    border-radius: 8px;
-    outline: none;
-    background-color: #EBEBEB;
-    color: #061D39;
+    padding:10px;
+    border:1px solid #A2A2A2;
+    border-radius:8px;
+    outline:none;
+    background-color:#EBEBEB;
+    color:#061D39;
   }
 
   .code-input:focus {
-    border-color: #8F95A5;
-    box-shadow: 0 0 5px #8F95A5;
+    border-color:#8F95A5;
+    box-shadow:0 0 5px #8F95A5;
   }
 
   .button {
-    padding: 10px 15px;
-    background-color: #8F95A5;
-    color: #EBEBEB;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.3s, transform 0.2s;
+    padding:10px 15px;
+    background-color:#8F95A5;
+    color:#EBEBEB;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
   }
 
   .button:hover {
-    background-color: #A2A2A2;
-    transform: translateY(-2px);
+    background-color:#A2A2A2;
   }
 
   .bottom-right {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    font-size: 14px;
-    color: #061D39;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    font-size:14px;
+    color:#061D39;
   }
 
   .bottom-right span {
-    min-width: 120px;
+    min-width:120px;
   }
 
   .footer {
-    width: 100%;
-    height: 20px;
-    background-color: #061D39;
-    color: #EBEBEB;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+    height:20px;
+    background-color:#061D39;
+    color:#EBEBEB;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
   }
+
 </style>
 </head>
 <body>
 
 <div class="top-bar">Casa-Museo Maravillas</div>
 
-<div class="container">
+<div class="main-container">
   <div class="main">
     <canvas id="threeCanvas"></canvas>
   </div>
@@ -192,31 +189,30 @@
 <div class="footer">© Ana Braojos Martorell</div>
 
 <script>
-  const searchButton = document.getElementById('searchButton');
-  const codeInput = document.getElementById('codeInput');
-  const objectInfo = document.getElementById('objectInfo');
+const searchButton = document.getElementById('searchButton');
+const codeInput = document.getElementById('codeInput');
+const objectInfo = document.getElementById('objectInfo');
 
-  searchButton.addEventListener('click', () => {
-    const code = codeInput.value.trim();
-
-    if(code === "5") {
-      objectInfo.innerHTML = `
-        <span><strong>Nombre:</strong> Ana</span>
-        <span><strong>Material:</strong> Chicle</span>
-        <span><strong>Dimensiones:</strong> 6 metros</span>
-        <span><strong>Fecha:</strong> 2000</span>
-        <span><strong>Autor:</strong> Narnia</span>
-      `;
-    } else {
-      objectInfo.innerHTML = `
-        <span><strong>Nombre:</strong></span>
-        <span><strong>Material:</strong></span>
-        <span><strong>Dimensiones:</strong></span>
-        <span><strong>Fecha:</strong></span>
-        <span><strong>Autor:</strong></span>
-      `;
-    }
-  });
+searchButton.addEventListener('click', () => {
+  const code = codeInput.value.trim();
+  if(code==="5"){
+    objectInfo.innerHTML=`
+      <span><strong>Nombre:</strong> Ana</span>
+      <span><strong>Material:</strong> Chicle</span>
+      <span><strong>Dimensiones:</strong> 6 metros</span>
+      <span><strong>Fecha:</strong> 2000</span>
+      <span><strong>Autor:</strong> Narnia</span>
+    `;
+  } else {
+    objectInfo.innerHTML=`
+      <span><strong>Nombre:</strong></span>
+      <span><strong>Material:</strong></span>
+      <span><strong>Dimensiones:</strong></span>
+      <span><strong>Fecha:</strong></span>
+      <span><strong>Autor:</strong></span>
+    `;
+  }
+});
 </script>
 
 </body>
