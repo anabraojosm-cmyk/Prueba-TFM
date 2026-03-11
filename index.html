@@ -19,7 +19,7 @@
 
   .container {
     display: flex;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 60px); /* altura menos barra superior */
     overflow: hidden;
   }
 
@@ -38,7 +38,6 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 
-  /* Área principal izquierda */
   .main {
     flex: 1;
     background-color: #061D39;
@@ -51,32 +50,35 @@
     height: 100%;
   }
 
-  /* Sidebar derecha vertical */
   .sidebar {
     width: 400px;
     display: flex;
     flex-direction: column;
+    position: relative; /* para que la barra inferior absolute sea relativa al sidebar */
+    background-color: #061D39;
   }
 
-  /* Panel de info azul ocupa todo el espacio disponible arriba */
   .info-panel {
-    flex: 1; /* ocupa todo lo que sobra arriba */
-    background-color: #061D39;
-    color: #EBEBEB;
     padding: 20px;
-    overflow-y: auto;
     font-size: 14px;
     line-height: 1.6;
+    color: #EBEBEB;
+    overflow-y: auto;
+    height: 100%; /* ocupa todo el sidebar, la barra inferior está encima */
+    padding-bottom: 180px; /* espacio para la barra inferior */
   }
 
-  /* Barra inferior blanca fija abajo */
+  /* Barra inferior fija abajo */
   .bottom-bar {
-    flex-shrink: 0; /* nunca se encoge */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: #EBEBEB;
     padding: 15px 20px;
+    box-shadow: -2px -2px 10px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    box-shadow: -2px -2px 10px rgba(0,0,0,0.2);
     gap: 10px;
   }
 
@@ -99,7 +101,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
   }
 
   .code-input {
@@ -145,7 +146,6 @@
     min-width: 120px;
   }
 
-  /* Footer */
   .footer {
     width: 100%;
     height: 20px;
@@ -160,66 +160,64 @@
 </head>
 <body>
 
-  <div class="top-bar">Casa-Museo Maravillas</div>
+<div class="top-bar">Casa-Museo Maravillas</div>
 
-  <div class="container">
-    <div class="main">
-      <canvas id="threeCanvas"></canvas>
-    </div>
-
-    <div class="sidebar">
-      <!-- Panel azul -->
-      <div class="info-panel" id="infoPanel"></div>
-
-      <!-- Barra inferior blanca -->
-      <div class="bottom-bar">
-        <h2>Sala: Salón de Estudio</h2>
-        <div class="bottom-content">
-          <div class="bottom-left">
-            <input class="code-input" placeholder="Introduce el código" id="codeInput"/>
-            <button class="button" id="searchButton">Buscar</button>
-          </div>
-          <div class="bottom-right" id="objectInfo">
-            <span><strong>Nombre:</strong></span>
-            <span><strong>Material:</strong></span>
-            <span><strong>Dimensiones:</strong></span>
-            <span><strong>Fecha:</strong></span>
-            <span><strong>Autor:</strong></span>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <div class="main">
+    <canvas id="threeCanvas"></canvas>
   </div>
 
-  <div class="footer">© Ana Braojos Martorell</div>
+  <div class="sidebar">
+    <div class="info-panel" id="infoPanel"></div>
 
-  <script>
-    const searchButton = document.getElementById('searchButton');
-    const codeInput = document.getElementById('codeInput');
-    const objectInfo = document.getElementById('objectInfo');
-
-    searchButton.addEventListener('click', () => {
-      const code = codeInput.value.trim();
-
-      if(code === "5") {
-        objectInfo.innerHTML = `
-          <span><strong>Nombre:</strong> Ana</span>
-          <span><strong>Material:</strong> Chicle</span>
-          <span><strong>Dimensiones:</strong> 6 metros</span>
-          <span><strong>Fecha:</strong> 2000</span>
-          <span><strong>Autor:</strong> Narnia</span>
-        `;
-      } else {
-        objectInfo.innerHTML = `
+    <div class="bottom-bar">
+      <h2>Sala: Salón de Estudio</h2>
+      <div class="bottom-content">
+        <div class="bottom-left">
+          <input class="code-input" placeholder="Introduce el código" id="codeInput"/>
+          <button class="button" id="searchButton">Buscar</button>
+        </div>
+        <div class="bottom-right" id="objectInfo">
           <span><strong>Nombre:</strong></span>
           <span><strong>Material:</strong></span>
           <span><strong>Dimensiones:</strong></span>
           <span><strong>Fecha:</strong></span>
           <span><strong>Autor:</strong></span>
-        `;
-      }
-    });
-  </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">© Ana Braojos Martorell</div>
+
+<script>
+  const searchButton = document.getElementById('searchButton');
+  const codeInput = document.getElementById('codeInput');
+  const objectInfo = document.getElementById('objectInfo');
+
+  searchButton.addEventListener('click', () => {
+    const code = codeInput.value.trim();
+
+    if(code === "5") {
+      objectInfo.innerHTML = `
+        <span><strong>Nombre:</strong> Ana</span>
+        <span><strong>Material:</strong> Chicle</span>
+        <span><strong>Dimensiones:</strong> 6 metros</span>
+        <span><strong>Fecha:</strong> 2000</span>
+        <span><strong>Autor:</strong> Narnia</span>
+      `;
+    } else {
+      objectInfo.innerHTML = `
+        <span><strong>Nombre:</strong></span>
+        <span><strong>Material:</strong></span>
+        <span><strong>Dimensiones:</strong></span>
+        <span><strong>Fecha:</strong></span>
+        <span><strong>Autor:</strong></span>
+      `;
+    }
+  });
+</script>
 
 </body>
 </html>
