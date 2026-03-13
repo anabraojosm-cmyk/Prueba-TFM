@@ -120,7 +120,9 @@ const piezas = {
 // Toggle menú
 const menuButton = document.getElementById("menuButton");
 const menuPanel = document.getElementById("menuPanel");
-menuButton.addEventListener("click",()=> menuPanel.classList.toggle("active"));
+menuButton.addEventListener("click",()=>{
+menuPanel.classList.toggle("active");
+});
 
 // Buscar pieza
 const searchButton = document.getElementById("searchButton");
