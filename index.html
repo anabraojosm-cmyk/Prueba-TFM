@@ -134,10 +134,10 @@ searchButton.addEventListener("click", () => {
     objectInfo.innerHTML = `
       <span><strong>Nombre:</strong> ${pieza.nombre}</span>
       <span><strong>Tipología:</strong> ${pieza.tipologia}</span>
-      <span><strong>Material:</strong></span>
-      <span><strong>Dimensiones:</strong></span>
-      <span><strong>Fecha:</strong></span>
-      <span><strong>Autor:</strong></span>
+      <span><strong>Material:</strong> ${pieza.material}</span>
+      <span><strong>Dimensiones:</strong> ${pieza.dimensiones}</span>
+      <span><strong>Fecha:</strong> ${pieza.fecha}</span>
+      <span><strong>Autor:</strong> ${pieza.autor}</span>
     `;
   } else {
     objectInfo.innerHTML = "";
