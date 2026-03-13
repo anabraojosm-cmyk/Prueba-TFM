@@ -7,6 +7,7 @@
 
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
+
 body {
   font-family:'Roboto',sans-serif;
   background:#061D39;
@@ -77,6 +78,10 @@ body {
   color:#fff;
 }
 
+.menu-panel.active {
+  display:flex;
+}
+
 /* SALA */
 .main {
   flex:1;
@@ -84,6 +89,7 @@ body {
   display:flex;
   min-height:0;
 }
+
 #threeCanvas {
   flex:1;
   width:100%;
@@ -99,17 +105,22 @@ body {
   flex-direction:column;
   gap:12px;
 }
+
 .bottom-bar h2 {
   color:#061D39;
   font-size:20px;
 }
+
 .bottom-content {
   display:flex;
   align-items:center;
   gap:40px;
 }
 
-.search-block { display:flex; gap:10px; }
+.search-block {
+  display:flex;
+  gap:10px;
+}
 
 .code-input {
   font-family:'Fira Code',monospace;
@@ -136,7 +147,9 @@ body {
   transition:all 0.2s;
 }
 
-.button:hover { background:#061D39; }
+.button:hover {
+  background:#061D39;
+}
 
 /* VISOR */
 .object-viewer {
@@ -158,95 +171,10 @@ body {
   gap:25px;
   color:#061D39;
   font-size:14px;
+  flex-wrap:wrap;
 }
 
 /* FOOTER */
 .footer {
   height:22px;
-  background:#061D39;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:12px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- CABECERA -->
-<div class="top-bar">
-  Casa-Museo Maravillas
-
-  <div class="menu-button" id="menuButton">
-    <div class="menu-line"></div>
-    <div class="menu-line"></div>
-    <div class="menu-line"></div>
-  </div>
-
-  <div class="menu-panel" id="menuPanel">
-    <div>Visión de humedad relativa HR %</div>
-    <div>Temperatura</div>
-    <div>Piezas en riesgo</div>
-    <div>Selección por tipología</div>
-  </div>
-</div>
-
-<!-- SALA -->
-<div class="main">
-  <canvas id="threeCanvas"></canvas>
-</div>
-
-<!-- BARRA INFERIOR -->
-<div class="bottom-bar">
-  <h2>Sala: Salón de Estudio</h2>
-
-  <div class="bottom-content">
-
-    <div class="search-block">
-      <input class="code-input" placeholder="Introduce el código" id="codeInput">
-      <button class="button" id="searchButton">Buscar</button>
-    </div>
-
-    <div class="object-viewer">Visor 3D</div>
-
-    <div class="object-data" id="objectInfo"></div>
-
-  </div>
-</div>
-
-<div class="footer">
-  © Ana Braojos Martorell
-</div>
-
-<!-- JS DIRECTO -->
-<script>
-console.log("JS cargado correctamente.");
-
-// --- MENÚ HAMBURGUESA ---
-const menuButton = document.getElementById("menuButton");
-const menuPanel = document.getElementById("menuPanel");
-
-menuButton.addEventListener("click", () => {
-  // Alterna entre oculto / visible
-  if (menuPanel.style.display === "flex") {
-    menuPanel.style.display = "none";
-  } else {
-    menuPanel.style.display = "flex";
-  }
-});
-
-// Cerrar menú al hacer clic fuera
-document.addEventListener("click", function(e) {
-  if (!menuButton.contains(e.target) && !menuPanel.contains(e.target)) {
-    menuPanel.style.display = "none";
-  }
-});
-</script>
-
-
-<!-- MUY IMPORTANTE: carga el script del buscador -->
-<script src="script.js"></script>
-  </body>
-</html>
-
+  background:#061D39
