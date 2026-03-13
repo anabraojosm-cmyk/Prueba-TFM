@@ -22,11 +22,11 @@ const menuPanel = document.getElementById("menuPanel");
 const searchButton = document.getElementById("searchButton");
 const codeInput = document.getElementById("codeInput");
 const objectInfo = document.getElementById("objectInfo");
-
+/* MENÚ */
 menuButton.addEventListener("click", () => {
 menuPanel.classList.toggle("active");
 });
-
+/* BUSCADOR */
 searchButton.addEventListener("click", () => {
 const code = codeInput.value.trim();
 const pieza = piezas[code];
@@ -37,5 +37,14 @@ objectInfo.innerHTML = `       <span><strong>Nombre:</strong> ${pieza.nombre}</s
 } else {
 objectInfo.innerHTML = `       <span><strong>Nombre:</strong></span>       <span><strong>Tipología:</strong></span>       <span><strong>Material:</strong></span>       <span><strong>Dimensiones:</strong></span>       <span><strong>Fecha:</strong></span>       <span><strong>Autor:</strong></span>
     `;
+  }
 }
+
+searchButton.addEventListener("click", buscarPieza);
+
+/* ENTER */
+codeInput.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    buscarPieza();
+  }
 });
