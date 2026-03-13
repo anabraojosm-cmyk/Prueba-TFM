@@ -73,11 +73,9 @@ body { font-family:'Roboto',sans-serif; background:#061D39; color:#EBEBEB; heigh
     <div>Selección por tipología</div>
   </div>
 </div>
-
 <div class="main">
   <canvas id="threeCanvas"></canvas>
 </div>
-
 <div class="bottom-bar">
   <h2>Sala: Salón de Estudio</h2>
   <div class="bottom-content">
@@ -89,63 +87,7 @@ body { font-family:'Roboto',sans-serif; background:#061D39; color:#EBEBEB; heigh
     <div class="object-data" id="objectInfo"></div>
   </div>
 </div>
-
 <div class="footer">© Ana Braojos Martorell</div>
-
-<script>
-// Base de piezas
-const piezas = {
-  "2345": {nombre:"Ventana 1", tipologia:"Ventana", materiales:"Cristal Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "2346": {nombre:"Ventana 2", tipologia:"Ventana", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1089": {nombre:"Cuadro 1", tipologia:"Pintura", materiales:"Cuadro, lienzo", dimensiones:"150 x 120 x 20 cm", fecha: "Siglo XVII", autor: "Zurbarán"},
-  "1090": {nombre:"Cuadro 2", tipologia:"Pintura", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1086": {nombre:"Cuadro 3", tipologia:"Pintura", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1083": {nombre:"Cuadro 4", tipologia:"Pintura", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1465": {nombre:"Tapiz 1", tipologia:"Tapiz", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1726": {nombre:"Alfombra 1", tipologia:"Alfombra", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1040": {nombre:"Cortina 1", tipologia:"Textil", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1041": {nombre:"Cortina 2", tipologia:"Textil", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "0034": {nombre:"Radiador 1", tipologia:"Radiador", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1263": {nombre:"Escultura 1", tipologia:"Escultura", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1274": {nombre:"Escultura 2", tipologia:"Escultura", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1040": {nombre:"Librería 1", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1041": {nombre:"Librería 2", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", Fecha: "Siglo XX", autor: "Bien institución"},
-  "1050": {nombre:"Silla 1", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1053": {nombre:"Silla 2", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1034": {nombre:"Mesa 1", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1092": {nombre:"Sillón 1", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"},
-  "1587": {nombre:"Sofá 1", tipologia:"Mueble", materiales:"Cristal, Aluminio", dimensiones:"3 metros", fecha: "Siglo XX", autor: "Bien institución"}
-};
-
-// Toggle menú
-const menuButton = document.getElementById("menuButton");
-const menuPanel = document.getElementById("menuPanel");
-menuButton.addEventListener("click",()=>{
-menuPanel.classList.toggle("active");
-});
-
-// Buscar pieza
-const searchButton = document.getElementById("searchButton");
-const codeInput = document.getElementById("codeInput");
-const objectInfo = document.getElementById("objectInfo");
-
-searchButton.addEventListener("click", () => {
-  const code = codeInput.value.trim();
-  const pieza = piezas[code];
-  if(pieza){
-    objectInfo.innerHTML = `
-      <span><strong>Nombre:</strong> ${pieza.nombre}</span>
-      <span><strong>Tipología:</strong> ${pieza.tipologia}</span>
-      <span><strong>Material:</strong> ${pieza.materiales}</span>
-      <span><strong>Dimensiones:</strong> ${pieza.dimensiones}</span>
-      <span><strong>Fecha:</strong> ${pieza.fecha}</span>
-      <span><strong>Autor:</strong> ${pieza.autor}</span>
-    `;
-  } else {
-    objectInfo.innerHTML = "";
-  }
-});
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
