@@ -6,175 +6,264 @@
 <title>Casa-Museo Maravillas</title>
 
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-body {
-  font-family:'Roboto',sans-serif;
+body{
+  font-family:Arial,sans-serif;
   background:#061D39;
-  color:#EBEBEB;
   height:100vh;
   display:flex;
   flex-direction:column;
-  overflow:hidden;
 }
 
 /* CABECERA */
-.top-bar {
+.top-bar{
   height:60px;
   background:#EBEBEB;
   color:#061D39;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:'Playfair Display',serif;
   font-size:28px;
-  font-weight:700;
+  font-weight:bold;
   position:relative;
 }
 
-.menu-button {
+.menu-button{
   position:absolute;
-  right:25px;
-  top:18px;
+  right:20px;
   cursor:pointer;
   display:flex;
   flex-direction:column;
-  gap:5px;
+  gap:4px;
 }
 
-.menu-line {
+.menu-line{
   width:22px;
   height:2px;
   background:#061D39;
 }
 
-/* MENU DESPLEGABLE */
-.menu-panel {
+.menu-panel{
   position:absolute;
   top:60px;
   right:20px;
   background:#EBEBEB;
   color:#061D39;
-  border-radius:6px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  padding:12px;
   display:none;
   flex-direction:column;
-  gap:10px;
-  font-size:14px;
-  min-width:190px;
-  z-index:1000;
+  padding:10px;
+  border-radius:6px;
+  gap:8px;
 }
 
-.menu-panel div {
-  cursor:pointer;
-  padding:5px 8px;
-  border-radius:4px;
-  transition:background 0.2s;
-}
-
-.menu-panel div:hover {
-  background:#A2A2A2;
-  color:#fff;
-}
-
-.menu-panel.active {
+.menu-panel.active{
   display:flex;
 }
 
 /* SALA */
-.main {
+.main{
   flex:1;
   background:#061D39;
-  display:flex;
-  min-height:0;
 }
 
-#threeCanvas {
-  flex:1;
+#threeCanvas{
   width:100%;
   height:100%;
   display:block;
 }
 
 /* BARRA INFERIOR */
-.bottom-bar {
+.bottom-bar{
   background:#EBEBEB;
-  padding:18px 30px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+  padding:20px;
+  min-height:150px;
 }
 
-.bottom-bar h2 {
+.bottom-bar h2{
   color:#061D39;
-  font-size:20px;
+  margin-bottom:15px;
 }
 
-.bottom-content {
+.bottom-content{
   display:flex;
+  gap:30px;
   align-items:center;
-  gap:40px;
+  flex-wrap:wrap;
 }
 
-.search-block {
+/* BUSCADOR */
+.search-block{
   display:flex;
   gap:10px;
 }
 
-.code-input {
-  font-family:'Fira Code',monospace;
+.code-input{
   padding:10px;
   border:1px solid #A2A2A2;
-  border-radius:8px;
-  background:#EBEBEB;
-  color:#061D39;
-  transition:all 0.2s;
+  border-radius:6px;
 }
 
-.code-input:focus {
-  border-color:#8F95A5;
-  box-shadow:0 0 6px #8F95A5;
-}
-
-.button {
-  padding:10px 16px;
-  background:#8F95A5;
-  color:#EBEBEB;
+.button{
+  padding:10px 15px;
   border:none;
-  border-radius:8px;
+  background:#8F95A5;
+  color:white;
+  border-radius:6px;
   cursor:pointer;
-  transition:all 0.2s;
 }
 
-.button:hover {
+.button:hover{
   background:#061D39;
 }
 
 /* VISOR */
-.object-viewer {
+.object-viewer{
   width:170px;
   height:120px;
-  border:1px solid #A2A2A2;
-  border-radius:6px;
   background:#061D39;
+  color:white;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:11px;
-  opacity:0.6;
+  align-items:center;
+  border-radius:6px;
 }
 
 /* DATOS */
-.object-data {
+.object-data{
   display:flex;
-  gap:25px;
+  gap:20px;
   color:#061D39;
-  font-size:14px;
   flex-wrap:wrap;
 }
 
 /* FOOTER */
-.footer {
-  height:22px;
-  background:#061D39
+.footer{
+  height:25px;
+  background:#061D39;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CABECERA -->
+<div class="top-bar">
+  Casa-Museo Maravillas
+
+  <div class="menu-button" id="menuButton">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+  </div>
+
+  <div class="menu-panel" id="menuPanel">
+    <div>Visión humedad relativa</div>
+    <div>Temperatura</div>
+    <div>Piezas en riesgo</div>
+    <div>Selección tipología</div>
+  </div>
+</div>
+
+<!-- SALA -->
+<div class="main">
+  <canvas id="threeCanvas"></canvas>
+</div>
+
+<!-- BARRA INFERIOR -->
+<div class="bottom-bar">
+  <h2>Sala: Salón de Estudio</h2>
+
+  <div class="bottom-content">
+
+    <div class="search-block">
+      <input type="text" id="codeInput" class="code-input" placeholder="Introduce código">
+      <button id="searchButton" class="button">Buscar</button>
+    </div>
+
+    <div class="object-viewer">
+      Visor 3D
+    </div>
+
+    <div id="objectInfo" class="object-data"></div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © Ana Braojos Martorell
+</div>
+
+<script>
+const piezas = {
+  "1089": {
+    nombre:"Cuadro 1",
+    tipologia:"Pintura",
+    materiales:"Lienzo",
+    dimensiones:"150 x 120 cm",
+    fecha:"Siglo XVII",
+    autor:"Zurbarán"
+  },
+
+  "1263": {
+    nombre:"Escultura 1",
+    tipologia:"Escultura",
+    materiales:"Bronce",
+    dimensiones:"80 cm",
+    fecha:"Siglo XIX",
+    autor:"Bien institución"
+  }
+};
+
+/* MENÚ */
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+
+menuButton.addEventListener("click", () => {
+  menuPanel.classList.toggle("active");
+});
+
+/* BUSCADOR */
+const searchButton = document.getElementById("searchButton");
+const codeInput = document.getElementById("codeInput");
+const objectInfo = document.getElementById("objectInfo");
+
+function buscarPieza(){
+  const code = codeInput.value.trim();
+  const pieza = piezas[code];
+
+  if(pieza){
+    objectInfo.innerHTML = `
+      <span><strong>Nombre:</strong> ${pieza.nombre}</span>
+      <span><strong>Tipología:</strong> ${pieza.tipologia}</span>
+      <span><strong>Material:</strong> ${pieza.materiales}</span>
+      <span><strong>Dimensiones:</strong> ${pieza.dimensiones}</span>
+      <span><strong>Fecha:</strong> ${pieza.fecha}</span>
+      <span><strong>Autor:</strong> ${pieza.autor}</span>
+    `;
+  } else {
+    objectInfo.innerHTML = `<span>Código no encontrado</span>`;
+  }
+}
+
+searchButton.addEventListener("click", buscarPieza);
+
+codeInput.addEventListener("keypress", function(e){
+  if(e.key==="Enter"){
+    buscarPieza();
+  }
+});
+</script>
+
+</body>
+</html>
