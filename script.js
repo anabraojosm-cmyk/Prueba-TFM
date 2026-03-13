@@ -22,29 +22,44 @@ const menuPanel = document.getElementById("menuPanel");
 const searchButton = document.getElementById("searchButton");
 const codeInput = document.getElementById("codeInput");
 const objectInfo = document.getElementById("objectInfo");
+
 /* MENÚ */
 menuButton.addEventListener("click", () => {
-menuPanel.classList.toggle("active");
+  menuPanel.classList.toggle("active");
 });
-/* BUSCADOR */
-searchButton.addEventListener("click", () => {
-const code = codeInput.value.trim();
-const pieza = piezas[code];
 
-if (pieza) {
-objectInfo.innerHTML = `       <span><strong>Nombre:</strong> ${pieza.nombre}</span>       <span><strong>Tipología:</strong> ${pieza.tipologia}</span>       <span><strong>Material:</strong> ${pieza.materiales}</span>       <span><strong>Dimensiones:</strong> ${pieza.dimensiones}</span>       <span><strong>Fecha:</strong> ${pieza.fecha}</span>       <span><strong>Autor:</strong> ${pieza.autor}</span>
+/* FUNCIÓN BUSCADOR */
+function buscarPieza() {
+  const code = codeInput.value.trim();
+  const pieza = piezas[code];
+
+  if (pieza) {
+    objectInfo.innerHTML = `
+      <span><strong>Nombre:</strong> ${pieza.nombre}</span>
+      <span><strong>Tipología:</strong> ${pieza.tipologia}</span>
+      <span><strong>Material:</strong> ${pieza.materiales}</span>
+      <span><strong>Dimensiones:</strong> ${pieza.dimensiones}</span>
+      <span><strong>Fecha:</strong> ${pieza.fecha}</span>
+      <span><strong>Autor:</strong> ${pieza.autor}</span>
     `;
-} else {
-objectInfo.innerHTML = `       <span><strong>Nombre:</strong></span>       <span><strong>Tipología:</strong></span>       <span><strong>Material:</strong></span>       <span><strong>Dimensiones:</strong></span>       <span><strong>Fecha:</strong></span>       <span><strong>Autor:</strong></span>
+  } else {
+    objectInfo.innerHTML = `
+      <span><strong>Nombre:</strong></span>
+      <span><strong>Tipología:</strong></span>
+      <span><strong>Material:</strong></span>
+      <span><strong>Dimensiones:</strong></span>
+      <span><strong>Fecha:</strong></span>
+      <span><strong>Autor:</strong></span>
     `;
   }
 }
 
+/* BOTÓN BUSCAR */
 searchButton.addEventListener("click", buscarPieza);
 
 /* ENTER */
-codeInput.addEventListener("keypress", function(e){
-  if(e.key === "Enter"){
+codeInput.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
     buscarPieza();
   }
 });
