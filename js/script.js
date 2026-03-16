@@ -105,7 +105,7 @@ scene.add(light2);
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-  "salasmaravillas.glb",
+  "models/salasmaravillas.glb",
   function(gltf) {
     scene.add(gltf.scene);
   },
