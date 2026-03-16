@@ -77,6 +77,8 @@ display:flex;
 
 .main{
 flex:1;
+position:relative;
+Main-height:400px;
 background:#061D39;
 }
 
