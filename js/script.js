@@ -67,3 +67,65 @@ codeInput.addEventListener("keydown", function(event) {
     buscarPieza();
   }
 });
+
+/* ===========================
+   THREE.JS
+=========================== */
+
+const canvas = document.getElementById("threeCanvas");
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x061D39);
+
+const camera = new THREE.PerspectiveCamera(
+  45,
+  canvas.clientWidth / canvas.clientHeight,
+  0.1,
+  1000
+);
+
+camera.position.set(0, 2, 8);
+
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+  antialias: true
+});
+
+renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+/* LUCES */
+const light1 = new THREE.AmbientLight(0xffffff, 1);
+scene.add(light1);
+
+const light2 = new THREE.DirectionalLight(0xffffff, 1);
+light2.position.set(5, 10, 7);
+scene.add(light2);
+
+/* CARGAR MODELO */
+const loader = new THREE.GLTFLoader();
+
+loader.load(
+  "salasmaravillas.glb",
+  function(gltf) {
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function(error) {
+    console.error("Error cargando modelo:", error);
+  }
+);
+
+/* ANIMACIÓN */
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+animate();
+
+/* RESPONSIVE */
+window.addEventListener("resize", function() {
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+});
