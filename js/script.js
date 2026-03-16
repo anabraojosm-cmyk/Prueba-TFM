@@ -107,6 +107,7 @@ const loader = new THREE.GLTFLoader();
 loader.load(
   "models/salasmaravillas.glb",
   function(gltf) {
+    gltf.scene.scale.set(1,1,1);
     scene.add(gltf.scene);
   },
   undefined,
