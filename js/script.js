@@ -100,7 +100,7 @@ scene.add(directionalLight);
 const loader = new THREE.GLTFLoader();
 
 loader.load(
-  "models/salamaravillas.glb",
+  "Prueba-TFM/models/salamaravillas.glb",
   function(gltf) {
     const modelo = gltf.scene;
 
