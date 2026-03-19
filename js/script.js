@@ -70,6 +70,21 @@ const MODEL_PATH = "models/salamaravillas.glb";
 
 const container = document.getElementById("viewer");
 
+
+// Crear mensaje de error (oculto al inicio)
+const errorBox = document.createElement("div");
+errorBox.style.position = "absolute";
+errorBox.style.top = "20px";
+errorBox.style.left = "20px";
+errorBox.style.padding = "10px 15px";
+errorBox.style.background = "rgba(0,0,0,0.7)";
+errorBox.style.color = "white";
+errorBox.style.fontFamily = "sans-serif";
+errorBox.style.display = "none";
+errorBox.style.zIndex = "10";
+errorBox.innerText = "Error: No se pudo cargar el modelo 3D.";
+document.body.appendChild(errorBox);
+
 // Escena
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
@@ -89,24 +104,24 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputEncoding = THREE.sRGBEncoding;
 container.appendChild(renderer.domElement);
 
-// Luces básicas
-const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
-scene.add(hemi);
-
+// Luces
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.2));
 const dir = new THREE.DirectionalLight(0xffffff, 0.8);
 dir.position.set(3, 5, 2);
 scene.add(dir);
 
-// Cargar modelo GLB
+// Cargar GLB
 const loader = new THREE.GLTFLoader();
 loader.load(
   MODEL_PATH,
   (gltf) => {
-    const model = gltf.scene;
-    scene.add(model);
+    scene.add(gltf.scene);
   },
   undefined,
-  (err) => console.error("Error cargando GLB:", err)
+  (error) => {
+    console.error("Error cargando GLB:", error);
+    errorBox.style.display = "block"; // Mostrar mensaje
+  }
 );
 
 // Animación
@@ -116,7 +131,7 @@ function animate() {
 }
 animate();
 
-// Ajustar al tamaño de ventana
+// Ajustar tamaño
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
