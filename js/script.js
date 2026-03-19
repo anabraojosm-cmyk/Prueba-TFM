@@ -53,8 +53,7 @@ function buscarPieza() {
     `;
   } else {
     objectInfo.innerHTML = `
-      <span><strong>Código no encontrado</strong></span>
-    `;
+      <span><strong>Código no encontrado</strong></span>`;
   }
 }
 
@@ -63,15 +62,10 @@ searchButton.addEventListener("click", buscarPieza);
 
 /* BÚSQUEDA CON ENTER */
 codeInput.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    buscarPieza();
-  }
+  if (event.key === "Enter") buscarPieza();
 });
 
-/* ===========================
-   THREE.JS
-=========================== */
-
+/* ===THREE.JS=== */
 const canvas = document.getElementById("threeCanvas");
 
 const scene = new THREE.Scene();
@@ -84,7 +78,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.set(0, 1, 3);
+camera.position.set(0, 2, 6);
 
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
@@ -92,14 +86,15 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 
 /* LUCES */
-const light1 = new THREE.AmbientLight(0xffffff, 1);
-scene.add(light1);
+const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+scene.add(ambientLight);
 
-const light2 = new THREE.DirectionalLight(0xffffff, 1);
-light2.position.set(5, 10, 7);
-scene.add(light2);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+directionalLight.position.set(5, 10, 7);
+scene.add(directionalLight);
 
 /* CARGAR MODELO */
 const loader = new THREE.GLTFLoader();
@@ -107,12 +102,20 @@ const loader = new THREE.GLTFLoader();
 loader.load(
   "models/salasmaravillas.glb",
   function(gltf) {
-    gltf.scene.scale.set(1,1,1);
-    scene.add(gltf.scene);
+    const modelo = gltf.scene;
+
+    modelo.position.set(0, 0, 0);
+    modelo.scale.set(1, 1, 1);
+
+    scene.add(modelo);
+
+    console.log("Modelo cargado correctamente");
+},
+ function(xhr) {
+    console.log((xhr.loaded / xhr.total * 100) + "% cargado");
   },
-  undefined,
   function(error) {
-    console.error("Error cargando modelo:", error);
+    console.error("Error cargando GLB:", error);
   }
 );
 
@@ -126,7 +129,10 @@ animate();
 
 /* RESPONSIVE */
 window.addEventListener("resize", function() {
-  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setSize(width, height);
 });
