@@ -65,74 +65,60 @@ codeInput.addEventListener("keydown", function(event) {
   if (event.key === "Enter") buscarPieza();
 });
 
-/* ===THREE.JS=== */
-const canvas = document.getElementById("threeCanvas");
+// Ruta al modelo dentro del repositorio
+const MODEL_PATH = "models/salamaravillas.glb";
 
+const container = document.getElementById("viewer");
+
+// Escena
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x061D39);
+scene.background = new THREE.Color(0x000000);
 
+// Cámara
 const camera = new THREE.PerspectiveCamera(
   45,
-  canvas.clientWidth / canvas.clientHeight,
+  window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
+camera.position.set(0, 1.5, 3);
 
-camera.position.set(0, 2, 6);
+// Renderizador
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.outputEncoding = THREE.sRGBEncoding;
+container.appendChild(renderer.domElement);
 
-const renderer = new THREE.WebGLRenderer({
-  canvas: canvas,
-  antialias: true
-});
+// Luces básicas
+const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
+scene.add(hemi);
 
-renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+dir.position.set(3, 5, 2);
+scene.add(dir);
 
-/* LUCES */
-const ambientLight = new THREE.AmbientLight(0xffffff, 2);
-scene.add(ambientLight);
-
-const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-directionalLight.position.set(5, 10, 7);
-scene.add(directionalLight);
-
-/* CARGAR MODELO */
+// Cargar modelo GLB
 const loader = new THREE.GLTFLoader();
-
 loader.load(
-  "Prueba-TFM/models/salamaravillas.glb",
-  function(gltf) {
-    const modelo = gltf.scene;
-
-    modelo.position.set(0, 0, 0);
-    modelo.scale.set(1, 1, 1);
-
-    scene.add(modelo);
-
-    console.log("Modelo cargado correctamente");
-},
- function(xhr) {
-    console.log((xhr.loaded / xhr.total * 100) + "% cargado");
+  MODEL_PATH,
+  (gltf) => {
+    const model = gltf.scene;
+    scene.add(model);
   },
-  function(error) {
-    console.error("Error cargando GLB:", error);
-  }
+  undefined,
+  (err) => console.error("Error cargando GLB:", err)
 );
 
-/* ANIMACIÓN */
+// Animación
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
-
 animate();
 
-/* RESPONSIVE */
-window.addEventListener("resize", function() {
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
-
-  camera.aspect = width / height;
+// Ajustar al tamaño de ventana
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(width, height);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
