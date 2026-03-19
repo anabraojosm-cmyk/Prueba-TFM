@@ -73,16 +73,18 @@ const container = document.getElementById("viewer");
 
 // Crear mensaje de error (oculto al inicio)
 const errorBox = document.createElement("div");
-errorBox.style.position = "absolute";
+errorBox.style.position = "fixed";
 errorBox.style.top = "20px";
 errorBox.style.left = "20px";
-errorBox.style.padding = "10px 15px";
-errorBox.style.background = "rgba(0,0,0,0.7)";
+errorBox.style.padding = "12px 18px";
+errorBox.style.background = "rgba(0,0,0,0.85)";
 errorBox.style.color = "white";
 errorBox.style.fontFamily = "sans-serif";
+errorBox.style.fontSize = "16px";
+errorBox.style.borderRadius = "6px";
+errorBox.style.zIndex = "9999";   // 🔥 Esto garantiza que se vea
 errorBox.style.display = "none";
-errorBox.style.zIndex = "10";
-errorBox.innerText = "Error: No se pudo cargar el modelo 3D.";
+errorBox.innerText = "❌ No se pudo cargar el modelo 3D.";
 document.body.appendChild(errorBox);
 
 // Escena
